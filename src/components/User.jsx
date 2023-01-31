@@ -24,10 +24,10 @@ function User() {
     }
 
     return (
-        <>
-            <h1>Congrats you made it!</h1>
-            <button onClick={handleLogout}>Logout</button>
-        </>
+        <main className='container'>
+            <h2>Congrats you made it!</h2>
+            <button className='btn-logout' onClick={handleLogout}>Logout</button>
+        </main>
     )
 }
 

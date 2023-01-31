@@ -41,16 +41,20 @@ function Login() {
     }
 
     return (
-        <>
+        <form className='container' onSubmit={handleSubmit}>
             <h1>Login</h1>
             <h2>Please enter your E-mail and Password</h2>
 
-            <form onSubmit={handleSubmit}>
+            <label className='input-container email'>
                 <input ref={emailRef} type='email' placeholder="E-mail" />
+            </label>
+
+            <label className='input-container password'>
                 <input ref={passRef} type='password' placeholder="Password" />
-                <button>Login</button>
-            </form>
-        </>
+            </label>
+
+            <button>Login</button>
+        </form>
     )
 }
 

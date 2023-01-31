@@ -1,0 +1,38 @@
+.container {
+    @extend %container-format;
+
+    @media(max-width: 450px) {
+        width: 350px;
+    }
+
+    .btn-logout {
+        @extend %input-format;
+
+        @media(max-width: 500px) {
+            width: 350px;
+        }
+
+        cursor: pointer;
+
+        font-size: 19px;
+        font-weight: 700;
+        font-family: 'PT Sans',
+        sans-serif;
+
+        width: 440px;
+        height: 50px;
+
+        margin-top: 30px;
+
+        border: 2px solid #ffff7a;
+        border-radius: 10px;
+
+        background: none;
+        color: #ffff7a;
+
+        &:hover {
+            background-color: #ffff7a;
+            color: #1F41A9;
+        }
+    }
+}
