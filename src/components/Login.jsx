@@ -1,24 +1,24 @@
 import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { checkIfLoggedIn, login } from "../actions/rootActions";
-import store from "../store";
-
+import inputValidation from "../functions/inputsValidation";
 
 function Login() {
     const dispach = useDispatch();
-    const navigate = useNavigate();
 
     useEffect(() => {
         dispach(checkIfLoggedIn());
     }, [dispach]);
 
-    store.subscribe(() => {
-        const user = store.getState();
-        if (user.email) {
+    const navigate = useNavigate();
+    const user = useSelector(state => state.user);
+
+    useEffect(() => {
+        if (user && user.email) {
             navigate('/user');
         }
-    });
+    }, [user, navigate])
 
     const emailRef = useRef();
     const passRef = useRef();
@@ -26,16 +26,16 @@ function Login() {
     const handleSubmit = e => {
         e.preventDefault();
 
-        const email = emailRef.current.value;
-        const pass = passRef.current.value;
+        const email = inputValidation(emailRef.current.value, 'email');
+        const pass = inputValidation(passRef.current.value, 'password');
 
-        const isEmail = email.length > 0;
-        const isPass = pass.length > 0;
+        const isEmail = !email.error;
+        const isPass = !pass.error;
 
         if (isEmail && isPass) {
             dispach(login({
-                email,
-                pass
+                email: email.value,
+                pass: pass.value
             }));
         }
     }
