@@ -1,25 +1,32 @@
-import { CHECK_IF_LOGGED_IN, LOGIN } from "../actionsTypes/rootActionsTypes";
+import { CHECK_IF_LOGGED_IN, LOGIN, LOGOUT } from "../actionsTypes/rootActionsTypes";
 import users from '../data/users.json';
 
-function rootReducer(_, action) {
+function rootReducer(state, action) {
 
-    let newState = { email: '' };
+    let newState = state ? { ...state } : { user: { email: '' } };
 
     switch (action.type) {
         case CHECK_IF_LOGGED_IN:
             const user = JSON.parse(localStorage.getItem('user'));
 
-            if (user) newState = user;
+            if (user) newState.user = user;
+            else newState.user = { email: '' };
+
             break;
 
         case LOGIN:
             const foundUser = users.filter(u => u.email === action.payload.email)[0];
-
-            if (foundUser.password === action.payload.pass) {
-                newState = { email: action.payload.email };
-                localStorage.setItem('user', JSON.stringify(newState));
+            if (foundUser) {
+                if (foundUser.password === action.payload.pass) {
+                    newState.user = { email: action.payload.email };
+                    localStorage.setItem('user', JSON.stringify(newState.user));
+                }
             }
+            break;
 
+        case LOGOUT:
+            newState.user = { email: '' };
+            localStorage.removeItem('user');
             break;
 
         default:
