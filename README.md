@@ -1,10 +1,5 @@
 # Front-End Developer Candidate Task
 
-## Preview 
-
-Preview here - https://vajkis.github.io/frontend-task-v2/
-- Logins: email: `frontend@isawesome.com`, password: `cool`
-
 ## About
 
 This task is meant to evaluate candidates frontend (HTML, CSS, JS, React) knowledge.
