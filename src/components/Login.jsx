@@ -18,7 +18,7 @@ function Login() {
         if (user && user.email) {
             navigate('/user');
         }
-    }, [user, navigate])
+    }, [user, navigate]);
 
     const emailRef = useRef();
     const passRef = useRef();

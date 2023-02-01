@@ -1,5 +1,5 @@
 import './App.scss';
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from 'react';
 import Background from './components/Background';
 
@@ -15,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/user' element={<User />} />
+          <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </Suspense>
     </>

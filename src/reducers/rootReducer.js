@@ -10,7 +10,6 @@ function rootReducer(state, action) {
             const user = JSON.parse(localStorage.getItem('user'));
 
             if (user) newState.user = user;
-            else newState.user = { email: '' };
 
             break;
 
